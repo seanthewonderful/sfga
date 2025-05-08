@@ -9,13 +9,13 @@ export default function Header() {
             <header className="flex items-center justify-between p-6 border-b bg-green-900">
                 {/* Left - Logo and Title */}
                 <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 -my-4">
                         <Image
-                            src="/images/sfga_logo.png"
+                            src="/images/sfga-logo-outline.png"
                             alt="Sean Fagan Golf Academy Logo"
                             width={100}
                             height={100}
-                            className="h-16 w-auto"
+                            className="h-28 w-auto"
                         />
                     </div>
                     <h1 className="text-3xl font-bold font-title text-white hover:text-yellow-400 transition-colors">Sean Fagan Golf Academy</h1>

@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import { FaCopy } from 'react-icons/fa';
 import { SiArchicad } from "react-icons/si";
+import Script from 'next/script';
+import { getLatestBlogPosts } from '@/lib/db';
 
 const carouselImages = [
   '/images/carousel/road-hole.jpeg',
@@ -18,10 +20,20 @@ const instructorImages = [
   '/images/instructor/monterey-cc.jpeg',
 ];
 
-export default function Home() {
+type LessonType = '30-min Swing Tune-Up' | 'One-Hour Lesson' | 'Caddie Fagan 9-holes' | 'Caddie Fagan 18-holes';
+
+const lessonTypes: Record<LessonType, string> = {
+  'One-Hour Lesson': 'https://calendly.com/lessons-seanfagangolf/one-hour-lesson?share_attribution=expiring_link',
+  '30-min Swing Tune-Up': 'https://calendly.com/lessons-seanfagangolf/30min?share_attribution=expiring_link',
+  'Caddie Fagan 9-holes': 'https://calendly.com/lessons-seanfagangolf/caddie-fagan-9-holes?share_attribution=expiring_link',
+  'Caddie Fagan 18-holes': 'https://calendly.com/lessons-seanfagangolf/caddie-fagan-18-holes?share_attribution=expiring_link'
+};
+
+function HomeClient({ latestPosts }: { latestPosts: any[] }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const [focus, setFocus] = useState(false);
+  const [selectedLessonType, setSelectedLessonType] = useState<LessonType>('30-min Swing Tune-Up');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +44,7 @@ export default function Home() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
 
   // Cycle through images every 8 seconds
   useEffect(() => {
@@ -41,6 +54,25 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Add effect to reload Calendly widget when selection changes
+  useEffect(() => {
+    // @ts-ignore - Calendly is loaded via script
+    if (window.Calendly) {
+      // Clear the container first
+      if (widgetContainerRef.current) {
+        widgetContainerRef.current.innerHTML = '';
+      }
+
+      // @ts-ignore
+      window.Calendly.initInlineWidget({
+        url: lessonTypes[selectedLessonType],
+        parentElement: widgetContainerRef.current,
+        prefill: {},
+        utm: {}
+      });
+    }
+  }, [selectedLessonType]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('seanfagangolfacademy@gmail.com');
@@ -113,7 +145,7 @@ export default function Home() {
         </blockquote>
       </section>
 
-      {/* About Section */}
+      {/* Instructor Section */}
       <section id="about" className="max-w-4xl mx-auto py-16 px-6">
         <h2 className="text-2xl font-title font-bold text-green-800 text-center mb-8">Meet Your Instructor</h2>
         <div className="md:flex md:items-center justify-between space-y-6 md:space-y-0 md:space-x-8">
@@ -165,12 +197,30 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-between p-6 bg-white rounded-lg border border-amber-500 shadow-md shadow-amber-500">
             <div className="flex flex-grow flex-col items-center justify-between">
-              <h3 className="text-xl font-semibold">Caddie Fagan</h3>
-              <Image src="/images/golf-field.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
+              <h3 className="text-xl font-semibold mb-4">Caddie Fagan</h3>
+              <Image src="/images/caddie-fagan.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">In this unique experience, you'll play golf the way it was meant to be played! Walk your favorite course with Caddie Fagan carrying your clubs. <br />Feel the course beneath your feet, learn how to read its contours, understand golf's etiquette, and learn to strategize and plan every shot.</p>
               <p className="mt-4 font-bold">9-holes: $140<br />18-holes: $240</p>
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col justify-center mt-4">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-xl font-bold font-title text-green-800">Who should take a lesson?</h3>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <p className="mt-4">Well, anyone really!</p>
+            <p className="mt-4 font-bold">Youth Players: </p>
+            <p className="mt-4">Sean Fagan is a certified educator and loves helping young golfers. He understands that for most young people, golf needs to be fun and intriguing and not just a grind to get the "right" swing. Above all else, Sean hopes that his teaching helps them to fall in love with the game in some way. Teaching young and new players is a passion of his, and he's great at it.</p>
+            <p className="mt-4 font-bold">New Players: </p>
+            <p className="mt-4">Just starting out? Let Sean help you get off to a fun and productive start. Golf takes years of practice to master, and Sean will show you how to have fun with the game while you're at it.</p>
+            <p className="mt-4 font-bold">Seasoned Players: </p>
+            <p className="mt-4">Sean has a unique ability to help players of all levels improve. Sean Fagan Golf Academy believes that you can perfect your swing, although there may be no such thing as a 'perfect' swing. Get to know your game better - your strengths, weaknesses, preferences, and goals. Whether you're looking to shave strokes off your game or just want to enjoy the game more, Sean can help.</p>
+            <p className="mt-4 font-bold">Scratch(ish) Golfers: </p>
+            <p className="mt-4">Your swing likely doesn't need lots of tweaking - to start breaking 70 requires your mental game to be on point and your focus to be sharp. We don't use the latest AI swing analysis tools, relying instead on the tried and true methods of video analysis and on-course instruction. Sean will work with you to develop purposeful practice habits and keep your head happy with your game.</p>
+          </div>
+
         </div>
 
       </section>
@@ -179,8 +229,9 @@ export default function Home() {
       <section className="py-16 px-6">
         <h2 className="text-2xl font-title font-bold text-green-800 text-center mb-8">Testimonials</h2>
         <div className="max-w-3xl mx-auto space-y-6 text-green-100">
-          <blockquote className="border-l-4 border-green-800 pl-4 italic">"Sean is the embodiment of patience, kindness, and a love for the game of golf. — Ivar T.T."</blockquote>
-          <blockquote className="border-l-4 border-green-800 pl-4 italic">"I went to Sean to lower my score. I thought this would make me enjoy the game more. Instead, I learned to love everything about golf. And for whatever reason, I also took 10 strokes off my game. — Mark M."</blockquote>
+          <blockquote className="border-l-4 border-green-800 pl-4 italic">"Our little golfer loves going to Sean's lessons. He's a great instructor and has a great personality. We highly recommend him!" — Moms everywhere</blockquote>
+          <blockquote className="border-l-4 border-green-800 pl-4 italic">"Sean is the embodiment of patience, kindness, and a love for the game of golf." — Mary S.</blockquote>
+          <blockquote className="border-l-4 border-green-800 pl-4 italic">"I only golfed once before I met Sean and I hated it. I watched him teach my nephew and I had to admit that he made the game look fun. So I listened closely and signed up for a lesson, and I've been hooked ever since." — Nolan G.</blockquote>
         </div>
       </section>
 
@@ -188,15 +239,36 @@ export default function Home() {
       <section id="blog" className="bg-gray-50 py-16 px-6">
         <h2 className="text-2xl font-title font-bold text-green-800 text-center mb-8">Latest from the Blog</h2>
         <div className="max-w-4xl mx-auto grid gap-6 md:grid-cols-3">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="bg-white rounded-lg overflow-hidden shadow">
-              <div className="h-40 bg-gray-200 flex items-center justify-center">Image</div>
+          {latestPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow"
+            >
+              {post.featured_image && (
+                <div className="relative h-40">
+                  <Image
+                    src={post.featured_image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <div className="p-4">
-                <h3 className="font-semibold">Blog Post Title</h3>
-                <p className="mt-2 text-sm text-gray-600">Brief excerpt...</p>
+                <h3 className="font-semibold text-green-800">{post.title}</h3>
+                <p className="mt-2 text-sm text-gray-600">{post.excerpt}</p>
               </div>
-            </div>
+            </Link>
           ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            href="/blog"
+            className="inline-block bg-green-800 text-white py-2 px-6 rounded-lg hover:bg-yellow-400 hover:text-green-800 transition-colors"
+          >
+            View All Posts
+          </Link>
         </div>
       </section>
 
@@ -204,7 +276,43 @@ export default function Home() {
       <section id="contact" className="py-16 px-6">
         <h2 className="text-2xl font-title font-bold text-green-800 text-center mb-8">Contact & Booking</h2>
         <div className="max-w-4xl mx-auto md:flex md:space-x-8">
+          <div className="flex-1 mt-8 md:mt-0">
+            <div className="mb-4">
+              <label className="block text-green-100 text-center mb-2">Select Lesson Type:</label>
+              <select
+                value={selectedLessonType}
+                onChange={(e) => setSelectedLessonType(e.target.value as LessonType)}
+                className="w-full border rounded p-2 text-green-100"
+              >
+                {Object.keys(lessonTypes).map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div
+              ref={widgetContainerRef}
+              className="calendly-inline-widget"
+              style={{ minWidth: '320px', height: '700px' }}
+            />
+            <Script
+              src="https://assets.calendly.com/assets/external/widget.js"
+              strategy="afterInteractive"
+              onLoad={() => {
+                // @ts-ignore
+                window.Calendly.initInlineWidget({
+                  url: lessonTypes[selectedLessonType],
+                  parentElement: widgetContainerRef.current,
+                  prefill: {},
+                  utm: {}
+                });
+              }}
+            />
+          </div>
+
           <form onSubmit={handleSubmit} className="flex-1 space-y-4 text-green-100">
+            <label className="block text-green-100 text-center mb-2">Reach out to Sean:</label>
             <input
               type="text"
               name="name"
@@ -232,53 +340,7 @@ export default function Home() {
               className="w-full border rounded p-2"
               required
             />
-            <select
-              name="lessonType"
-              value={formData.lessonType}
-              onChange={handleInputChange}
-              className="w-full border rounded p-2"
-              required
-            >
-              <option>30-min Swing Tune-Up</option>
-              <option>One-Hour Lesson</option>
-              <option>Caddie Fagan</option>
-            </select>
-            <label htmlFor="area">Is there a part of your game you'd like to focus on?</label>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="focus"
-                  id="focus-y"
-                  value="y"
-                  onChange={() => setFocus(true)}
-                />
-                <label htmlFor="focus-y">Yes</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="focus"
-                  id="focus-n"
-                  value="n"
-                  onChange={() => setFocus(false)}
-                />
-                <label htmlFor="focus-n">No</label>
-              </div>
-            </div>
-            {focus && (
-              <>
-                <label htmlFor="area" className="ml-4">Let me know what you'd like to focus on!</label>
-                <textarea
-                  id="area"
-                  name="focusArea"
-                  value={formData.focusArea}
-                  onChange={handleInputChange}
-                  className="w-[calc(100%-1rem)] border rounded p-2 ml-4"
-                />
-              </>
-            )}
-            <label htmlFor="details">Additional notes or questions:</label>
+            <label htmlFor="details">Questions or comments:</label>
             <textarea
               name="details"
               id="details"
@@ -300,12 +362,9 @@ export default function Home() {
               <p className="text-red-600">Failed to send message. Please try again.</p>
             )}
           </form>
-          <div className="flex-1 mt-8 md:mt-0">
-            <div className="h-96 bg-gray-200 flex items-center justify-center">Calendly Booking Embed</div>
-          </div>
         </div>
         <p className="mt-8 text-center text-md text-green-100">
-          Or email: <a href="mailto:sean@fagangolfacademy.com" className="text-green-800 hover:underline hover:text-yellow-400">seanfagangolfacademy@gmail.com</a>
+          Or email: <a href="mailto:lessons@seanfagangolf.com" className="text-green-800 hover:underline hover:text-yellow-400">lessons@seanfagangolf.com</a>
           <button
             onClick={handleCopyEmail}
             className="ml-1 inline-flex items-center text-green-700 hover:text-yellow-400 active:text-green-700 hover:cursor-pointer"
@@ -345,17 +404,13 @@ export default function Home() {
           >
             Swing/Caddie icons by bsd - Flaticon
           </a>
-          <a
-            href="https://www.flaticon.com/free-icons/golf-course"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="golf course icons"
-            className="text-xs text-white"
-          >
-            Golf course icons created by iconixar - Flaticon
-          </a>
         </div>
       </footer>
     </main>
   );
+}
+
+export default async function Home() {
+  const latestPosts = await getLatestBlogPosts(3);
+  return <HomeClient latestPosts={latestPosts} />;
 }
