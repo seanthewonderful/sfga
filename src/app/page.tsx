@@ -8,6 +8,7 @@ import { FaCopy } from 'react-icons/fa';
 import { SiArchicad } from "react-icons/si";
 import Script from 'next/script';
 import { getLatestBlogPosts } from '@/lib/db';
+import { InlineWidget } from "react-calendly";
 
 const carouselImages = [
   '/images/carousel/road-hole.jpeg',
@@ -63,25 +64,6 @@ export default function HomeClient() {
 
     return () => clearInterval(interval);
   }, []);
-
-  // Add effect to reload Calendly widget when selection changes
-  useEffect(() => {
-    // @ts-ignore - Calendly is loaded via script
-    if (window.Calendly) {
-      // Clear the container first
-      if (widgetContainerRef.current) {
-        widgetContainerRef.current.innerHTML = '';
-      }
-
-      // @ts-ignore
-      window.Calendly.initInlineWidget({
-        url: lessonTypes[selectedLessonType],
-        parentElement: widgetContainerRef.current,
-        prefill: {},
-        utm: {}
-      });
-    }
-  }, [selectedLessonType]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('seanfagangolfacademy@gmail.com');
@@ -300,22 +282,22 @@ export default function HomeClient() {
                 ))}
               </select>
             </div>
-            <div
-              ref={widgetContainerRef}
-              className="calendly-inline-widget"
-              style={{ minWidth: '320px', height: '700px' }}
-            />
-            <Script
-              src="https://assets.calendly.com/assets/external/widget.js"
-              strategy="afterInteractive"
-              onLoad={() => {
-                // @ts-ignore
-                window.Calendly.initInlineWidget({
-                  url: lessonTypes[selectedLessonType],
-                  parentElement: widgetContainerRef.current,
-                  prefill: {},
-                  utm: {}
-                });
+            <InlineWidget
+              url={lessonTypes[selectedLessonType]}
+              styles={{
+                height: '700px',
+                minWidth: '320px'
+              }}
+              prefill={{
+                email: '',
+                firstName: '',
+                lastName: '',
+                name: ''
+              }}
+              pageSettings={{
+                hideEventTypeDetails: false,
+                hideLandingPageDetails: false,
+                hideGdprBanner: true
               }}
             />
           </div>
