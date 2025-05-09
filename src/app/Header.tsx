@@ -1,14 +1,16 @@
 "use client";
 import Image from 'next/image';
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
+
     return (
         <div className="relative">
             <header className="flex items-center justify-between p-6 border-b bg-green-900">
                 {/* Left - Logo and Title */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 cursor-pointer" onClick={() => router.push('/')}>
                     <div className="flex-shrink-0 -my-4">
                         <Image
                             src="/images/sfga-logo-outline.png"
