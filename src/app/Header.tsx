@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const router = useRouter();
@@ -25,11 +26,11 @@ export default function Header() {
 
                 {/* Right - Navigation */}
                 <nav className="hidden md:flex space-x-6 items-end">
-                    <a href="#about" className="text-white hover:text-yellow-400 transition-colors">About</a>
-                    <a href="#lessons" className="text-white hover:text-yellow-400 transition-colors">Lessons</a>
-                    <a href="#blog" className="text-white hover:text-yellow-400 transition-colors">Blog</a>
-                    <a href="#contact" className="text-white hover:text-yellow-400 transition-colors">Contact</a>
-                    <a href="#book" className="bg-white text-green-800 py-2 px-4 rounded-lg hover:bg-yellow-400 transition-colors">Book a Lesson</a>
+                    <a onClick={() => router.push('/#about')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">About</a>
+                    <a onClick={() => router.push('/#lessons')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Lessons</a>
+                    <a onClick={() => router.push('/blog')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Blog</a>
+                    <a onClick={() => router.push('/#contact')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
+                    <a onClick={() => router.push('/#contact')} className="bg-white text-green-800 py-2 px-4 rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book a Lesson</a>
                 </nav>
 
                 {/* Mobile Menu Button */}
@@ -62,11 +63,11 @@ export default function Header() {
                     }`}
             >
                 <div className="py-2 px-4 space-y-2">
-                    <a href="#about" className="block py-2 text-white hover:text-yellow-400 transition-colors">About</a>
-                    <a href="#lessons" className="block py-2 text-white hover:text-yellow-400 transition-colors">Lessons</a>
-                    <a href="#blog" className="block py-2 text-white hover:text-yellow-400 transition-colors">Blog</a>
-                    <a href="#contact" className="block py-2 text-white hover:text-yellow-400 transition-colors">Contact</a>
-                    <a href="#book" className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors">Book a Lesson</a>
+                    <a onClick={() => router.push('/#about')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">About</a>
+                    <a onClick={() => router.push('/#lessons')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Lessons</a>
+                    <a onClick={() => router.push('/blog')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Blog</a>
+                    <a onClick={() => router.push('/#contact')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
+                    <a onClick={() => router.push('/#book')} className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book a Lesson</a>
                 </div>
             </div>
         </div>

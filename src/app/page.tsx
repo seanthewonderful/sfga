@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import { FaCopy } from 'react-icons/fa';
-import { SiArchicad } from "react-icons/si";
-import Script from 'next/script';
 import { getLatestBlogPosts } from '@/lib/db';
 import { InlineWidget } from "react-calendly";
 
@@ -45,7 +43,6 @@ export default function HomeClient() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
-  const widgetContainerRef = useRef<HTMLDivElement>(null);
   const [latestPosts, setLatestPosts] = useState<any[]>([]);
 
   useEffect(() => {
