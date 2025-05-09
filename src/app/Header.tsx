@@ -18,7 +18,7 @@ export default function Header() {
                             alt="Sean Fagan Golf Academy Logo"
                             width={100}
                             height={100}
-                            className="h-28 w-auto"
+                            className="h-28 w-auto hover:scale-105 transition-transform duration-300"
                         />
                     </div>
                     <h1 className="text-3xl font-bold font-title text-white hover:text-yellow-400 transition-colors">Sean Fagan Golf Academy</h1>

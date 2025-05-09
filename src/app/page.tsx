@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import { FaCopy } from 'react-icons/fa';
+import { FaRegHandPointLeft } from "react-icons/fa6";
 import { getLatestBlogPosts } from '@/lib/db';
 import { InlineWidget } from "react-calendly";
 
@@ -299,57 +300,71 @@ export default function HomeClient() {
             />
           </div>
 
-          <form onSubmit={handleSubmit} className="flex-1 space-y-4 text-green-100">
-            <label className="block text-green-100 text-center mb-2">Reach out to Sean:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Name"
-              className="w-full border rounded p-2"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-              className="w-full border rounded p-2"
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="Phone"
-              className="w-full border rounded p-2"
-              required
-            />
-            <label htmlFor="details">Questions or comments:</label>
-            <textarea
-              name="details"
-              id="details"
-              value={formData.details}
-              onChange={handleInputChange}
-              className="w-full border rounded p-2"
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-green-800 text-white py-2 px-4 rounded-lg hover:text-green-800 hover:bg-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-            {submitStatus === 'success' && (
-              <p className="text-green-600">Message sent successfully!</p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-red-600">Failed to send message. Please try again.</p>
-            )}
-          </form>
+          <div className="flex-1 flex flex-col justify-between">
+            <form onSubmit={handleSubmit} className="flex-1 space-y-4 text-green-100">
+              <label className="block text-green-100 text-center mb-2">Reach out to Sean:</label>
+              {submitStatus === "success" ? (
+                <p className="text-green-600 text-center">Message sent successfully! We'll get back to you as soon as possible.</p>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Name"
+                    className="w-full border rounded p-2"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email"
+                    className="w-full border rounded p-2"
+                    required
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Phone"
+                    className="w-full border rounded p-2"
+                    required
+                  />
+                  <label htmlFor="details">Questions or comments:</label>
+                  <textarea
+                    name="details"
+                    id="details"
+                    value={formData.details}
+                    onChange={handleInputChange}
+                    className="w-full border rounded p-2"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-green-800 text-white py-2 px-4 rounded-lg hover:text-green-800 hover:bg-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </button>
+                </>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-red-600">Failed to send message. Please try again.</p>
+              )}
+            </form>
+            <div className="flex gap-4 mb-24 text-green-100">
+              <span>
+                <FaRegHandPointLeft size={24} />
+              </span>
+              <span>
+                <p className="text-sm">Be advised - This calendar is not the final say in booking a lesson. We will reach out within 24 hours to confirm your lesson at your chosen time, but may have to reschedule.</p>
+                <p className="text-sm">If you don't hear from us within 24 hours, please reach out to us at lessons@seanfagangolf.com.</p>
+              </span>
+            </div>
+          </div>
         </div>
         <p className="mt-8 text-center text-md text-green-100">
           Or email: <a href="mailto:lessons@seanfagangolf.com" className="text-green-800 hover:underline hover:text-yellow-400">lessons@seanfagangolf.com</a>

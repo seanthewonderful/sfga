@@ -9,21 +9,19 @@ export async function POST(request: Request) {
         const { name, email, phone, lessonType, focusArea, details } = body;
 
         const emailContent = `
-      New Contact Form Submission from SFGA Website
-      
-      Name: ${name}
-      Email: ${email}
-      Phone: ${phone}
-      Lesson Type: ${lessonType}
-      ${focusArea ? `Focus Area: ${focusArea}` : ''}
-      
-      Additional Notes:
-      ${details}
-    `;
+            New Contact Form Submission from SFGA Website
+            
+            Name: ${name}
+            Email: ${email}
+            Phone: ${phone}
+            
+            Additional Notes:
+            ${details}
+        `;
 
         const data = await resend.emails.send({
             from: 'SFGA Contact Form <onboarding@resend.dev>',
-            to: 'seanfagangolfacademy@gmail.com',
+            to: 'lessons@seanfagangolf.com',
             subject: 'SFGA Contact Form Submission',
             text: emailContent,
         });
