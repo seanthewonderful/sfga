@@ -1,4 +1,12 @@
+'use server';
+
 import { sql } from '@vercel/postgres';
+
+console.log('Environment check:', {
+    hasPostgresUrl: !!process.env.POSTGRES_URL,
+    nodeEnv: process.env.NODE_ENV,
+    // Don't log the actual URL for security reasons
+});
 
 export type BlogPost = {
     id: number;

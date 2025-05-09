@@ -29,22 +29,31 @@ const lessonTypes: Record<LessonType, string> = {
   'Caddie Fagan 18-holes': 'https://calendly.com/lessons-seanfagangolf/caddie-fagan-18-holes?share_attribution=expiring_link'
 };
 
-function HomeClient({ latestPosts }: { latestPosts: any[] }) {
+export default function HomeClient() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const [focus, setFocus] = useState(false);
-  const [selectedLessonType, setSelectedLessonType] = useState<LessonType>('30-min Swing Tune-Up');
+  const [selectedLessonType, setSelectedLessonType] = useState<LessonType>('One-Hour Lesson');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    lessonType: '30-min Swing Tune-Up',
+    lessonType: 'One-Hour Lesson',
     focusArea: '',
     details: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
   const widgetContainerRef = useRef<HTMLDivElement>(null);
+  const [latestPosts, setLatestPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchLatestPosts = async () => {
+      const posts = await getLatestBlogPosts(3);
+      setLatestPosts(posts);
+    };
+    fetchLatestPosts();
+  }, []);
 
   // Cycle through images every 8 seconds
   useEffect(() => {
@@ -410,7 +419,7 @@ function HomeClient({ latestPosts }: { latestPosts: any[] }) {
   );
 }
 
-export default async function Home() {
-  const latestPosts = await getLatestBlogPosts(3);
-  return <HomeClient latestPosts={latestPosts} />;
-}
+// export default async function Home() {
+//   const latestPosts = await getLatestBlogPosts(3);
+//   return <HomeClient latestPosts={latestPosts} />;
+// }
