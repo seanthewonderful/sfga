@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Image } from 'next/image';
 
 interface ImageUploadProps {
     onImageUpload: (url: string) => void;
@@ -62,10 +63,12 @@ export default function ImageUpload({ onImageUpload, currentImage }: ImageUpload
         <div className="space-y-4">
             {currentImage && (
                 <div className="relative w-full h-48 rounded-lg overflow-hidden">
-                    <img
+                    <Image
                         src={currentImage}
                         alt="Current featured image"
                         className="object-cover w-full h-full"
+                        width={100}
+                        height={100}
                     />
                 </div>
             )}

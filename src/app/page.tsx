@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import { FaCopy } from 'react-icons/fa';
 import { FaRegHandPointLeft } from "react-icons/fa6";
@@ -32,7 +32,6 @@ const lessonTypes: Record<LessonType, string> = {
 export default function HomeClient() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
-  const [focus, setFocus] = useState(false);
   const [selectedLessonType, setSelectedLessonType] = useState<LessonType>('One-Hour Lesson');
   const [formData, setFormData] = useState({
     name: '',
@@ -96,9 +95,9 @@ export default function HomeClient() {
         focusArea: '',
         details: ''
       });
-      setFocus(false);
     } catch (error) {
       setSubmitStatus('error');
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }

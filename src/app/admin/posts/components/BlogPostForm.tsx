@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BlogPost, CreateBlogPostData } from '@/lib/blog';
+import { CreateBlogPostData } from '@/lib/blog';
 import ImageUpload from '@/app/components/ImageUpload';
 
 interface BlogPostFormProps {
