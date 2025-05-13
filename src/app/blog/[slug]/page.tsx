@@ -8,7 +8,14 @@ import { sql } from '@vercel/postgres';
 import MarkdownContent from '@/app/components/MarkdownContent';
 import { BlogPost } from '@/lib/blog';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+type BlogPostPageProps = {
+    params: {
+        slug: string;
+    };
+};
+
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
     const post = await getBlogPost(params.slug);
 
     if (!post) {
@@ -39,7 +46,7 @@ async function getPost(slug: string) {
     return result.rows[0];
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const post = await getPost(params.slug);
 
     if (!post) {
