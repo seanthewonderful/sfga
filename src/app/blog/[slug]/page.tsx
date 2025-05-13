@@ -2,22 +2,21 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/app/Header';
+import { getBlogPost } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import { sql } from '@vercel/postgres';
 import MarkdownContent from '@/app/components/MarkdownContent';
 import { BlogPost } from '@/lib/blog';
 
-// ✅ Inline typing here – no shared types
-export async function generateMetadata(
-    { params }: { params: { slug: string } }
-): Promise<Metadata> {
-    const result = await sql<BlogPost>`
-    SELECT * FROM blog_posts 
-    WHERE slug = ${params.slug}
-    AND status = 'published';
-  `;
+type BlogPostPageProps = {
+    params: Promise<{
+        slug: string;
+    }>;
+};
 
-    const post = result.rows[0];
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
 
     if (!post) {
         return {
@@ -33,18 +32,23 @@ export async function generateMetadata(
     };
 }
 
-export default async function Page({
-    params,
-}: {
-    params: { slug: string };
-}) {
+async function getPost(slug: string) {
     const result = await sql<BlogPost>`
-    SELECT * FROM blog_posts 
-    WHERE slug = ${params.slug}
-    AND status = 'published';
-  `;
+        SELECT * FROM blog_posts 
+        WHERE slug = ${slug}
+        AND status = 'published';
+    `;
 
-    const post = result.rows[0];
+    if (result.rows.length === 0) {
+        return null;
+    }
+
+    return result.rows[0];
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+    const { slug } = await params;
+    const post = await getPost(slug);
 
     if (!post) {
         notFound();
