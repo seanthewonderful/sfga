@@ -1,6 +1,7 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 interface MarkdownContentProps {
     content: string;
@@ -16,8 +17,10 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             [&>ul]:my-6 [&>ul]:list-disc [&>ul]:pl-6
             [&>ol]:my-6 [&>ol]:list-decimal [&>ol]:pl-6
             [&>li]:my-2
+            [&>blockquote]:border-l-4 [&>blockquote]:border-green-200 [&>blockquote]:pl-4 [&>blockquote]:py-2 [&>blockquote]:my-6 [&>blockquote]:italic [&>blockquote]:text-green-800
+            [&>small]:text-sm [&>small]:text-green-700
             [&>a]:text-green-600 [&>a:hover]:text-green-800">
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
         </div>
     );
 } 

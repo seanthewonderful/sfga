@@ -17,7 +17,7 @@ const carouselImages = [
 const instructorImages = [
   '/images/instructor/founders-circle.jpeg',
   '/images/instructor/gladstan.jpeg',
-  '/images/instructor/monterey-cc.jpeg',
+  '/images/instructor/gardens.jpeg',
 ];
 
 type LessonType = '30-min Swing Tune-Up' | 'One-Hour Lesson' | 'Caddie Fagan 9-holes' | 'Caddie Fagan 18-holes';
@@ -149,15 +149,15 @@ export default function HomeClient() {
           </div>
           <div className="">
             <p className="mt-4 text-green-100">Sean Fagan has a background in professional education and has been a golf instructor & mentor since 2012.</p>
-            <p className="mt-4 text-green-100">"My approach to golf is to be in constant admiration of it. It's more than just a game, and requires more than just a swing. It requires a mindset, a strategy, and a plan. It is a union of mind, body, and nature. <br />But I've found that the most enjoyment comes from hitting the ball well. I will help you with your swing, and hopefully help you between the ears to more fully enjoy the game."</p>
+            <p className="mt-4 text-green-100">"My approach to golf is to be in constant admiration of it. It's more than just a game, and requires more than just a swing. It requires a mindset, a strategy, and a plan. It is a union of mind, body, and nature, and I want to play it every minute of every day. <br />"I've found that the most enjoyment comes from hitting the ball well. I will help you with your swing, and hopefully help you between the ears to more fully enjoy and admire the game of golf."</p>
           </div>
         </div>
-        <blockquote className="mt-2 italic text-green-800">
+        <blockquote className="mt-2 italic text-green-700">
           "One reason golf is such an exasperating game is that a thing we learned is so easily forgotten, and we find ourselves struggling year after year with faults we had discovered and corrected time and again."
           <br />
           <span className="block mt-2 text-sm">— Bobby Jones</span>
         </blockquote>
-        <blockquote className="mt-2 italic text-green-800">
+        <blockquote className="mt-2 italic text-green-700">
           "Reverse every natural instinct and do the opposite of what you are inclined to do, and you will probably come very close to having a perfect golf swing."
           <br />
           <span className="block mt-2 text-sm">— Ben Hogan</span>
@@ -194,22 +194,60 @@ export default function HomeClient() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center mt-4">
+        <div className="flex flex-col justify-center mt-8">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold font-title text-green-800">Who should take a lesson?</h3>
+            <h3 className="text-2xl font-bold font-title text-green-800 mb-6">Who should take a lesson?</h3>
+            <p className="text-lg text-center text-green-900 mb-8">Well, anyone really!</p>
           </div>
-          <div className="max-w-4xl mx-auto">
-            <p className="mt-4">Well, anyone really!</p>
-            <p className="mt-4 font-bold">Youth Players: </p>
-            <p className="mt-4">Sean Fagan is a certified educator and loves helping young golfers. He understands that for most young people, golf needs to be fun and intriguing and not just a grind to get the "right" swing. Above all else, Sean hopes that his teaching helps them to fall in love with the game in some way. Teaching young and new players is a passion of his, and he's great at it.</p>
-            <p className="mt-4 font-bold">New Players: </p>
-            <p className="mt-4">Just starting out? Let Sean help you get off to a fun and productive start. Golf takes years of practice to master, and Sean will show you how to have fun with the game while you're at it.</p>
-            <p className="mt-4 font-bold">Seasoned Players: </p>
-            <p className="mt-4">Sean has a unique ability to help players of all levels improve. Sean Fagan Golf Academy believes that you can perfect your swing, although there may be no such thing as a 'perfect' swing. Get to know your game better - your strengths, weaknesses, preferences, and goals. Whether you're looking to shave strokes off your game or just want to enjoy the game more, Sean can help.</p>
-            <p className="mt-4 font-bold">Scratch(ish) Golfers: </p>
-            <p className="mt-4">Your swing likely doesn't need lots of tweaking - to start breaking 70 requires your mental game to be on point and your focus to be sharp. We don't use the latest AI swing analysis tools, relying instead on the tried and true methods of video analysis and on-course instruction. Sean will work with you to develop purposeful practice habits and keep your head happy with your game.</p>
-          </div>
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-600">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <Image src="/images/ror-logo.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-green-800 mb-3">Youth Players</p>
+                  <p className="text-green-900 leading-relaxed">Sean Fagan is a certified educator and loves helping young golfers. He understands that for most young people, golf needs to be fun and intriguing and not just a grind to get that "perfect," robotic swing. Above all else, Sean tries to teach young golfers to fall in love with the game by making it fun and engaging.</p>
+                </div>
+              </div>
+            </div>
 
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-600">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <Image src="/images/range-w-bucket.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-green-800 mb-3">New Players</p>
+                  <p className="text-green-900 leading-relaxed">Just starting out? Sean will help you get off to a fun and productive start. Golf takes years of practice to master, and Sean will show you how to have fun with the game while you're at it. Welcome to the greatest game ever invented!</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-600">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <Image src="/images/girl-putting.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-green-800 mb-3">Seasoned Players</p>
+                  <p className="text-green-900 leading-relaxed">Sean has a unique ability to help players of all levels improve. Even a "perfect" swing has its ups and downs. Sean Fagan Golf Academy wants you to get to know your own game better - your strengths, weaknesses, preferences, and goals. Whether you're looking to shave strokes off your game or just want to enjoy golf more, Sean can help.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-600">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <Image src="/images/scratch.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-green-800 mb-3">Scratch(ish) Golfers</p>
+                  <p className="text-green-900 leading-relaxed">Your swing likely doesn't need lots of tweaking - to start breaking 70 requires your mental game to be on point and your focus to be sharp. We don't use the latest AI swing analysis tools, relying instead on the tried and true methods of video analysis and on-course instruction. Sean will work with you to develop purposeful practice habits and keep your head happy with your game.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </section>
