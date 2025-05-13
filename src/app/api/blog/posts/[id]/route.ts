@@ -14,9 +14,13 @@ const blogPostSchema = z.object({
     status: z.enum(['draft', 'published']).default('draft'),
 });
 
+interface RouteContext {
+    params: { id: string };
+}
+
 export async function GET(
     request: NextRequest,
-    context: { params: { id: string } }
+    context: RouteContext
 ) {
     try {
         const { id } = context.params;
@@ -44,7 +48,7 @@ export async function GET(
 
 export async function PUT(
     request: NextRequest,
-    context: { params: { id: string } }
+    context: RouteContext
 ) {
     try {
         const body = await request.json();
