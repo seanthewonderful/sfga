@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { z } from 'zod';
 
 // Schema for validating blog post data
@@ -15,13 +15,14 @@ const blogPostSchema = z.object({
 });
 
 export async function GET(
-    request: Request,
-    { params }: { params: { id: string } }
+    request: NextRequest,
+    context: { params: { id: string } }
 ) {
     try {
+        const { id } = context.params;
         const result = await sql`
             SELECT * FROM blog_posts 
-            WHERE id = ${params.id};
+            WHERE id = ${id};
         `;
 
         if (result.rows.length === 0) {
@@ -42,12 +43,13 @@ export async function GET(
 }
 
 export async function PUT(
-    request: Request,
-    { params }: { params: { id: string } }
+    request: NextRequest,
+    context: { params: { id: string } }
 ) {
     try {
         const body = await request.json();
-        console.log('Received update request for post:', params.id);
+        const { id } = context.params;
+        console.log('Received update request for post:', id);
         console.log('Request body:', body);
 
         const validatedData = blogPostSchema.parse(body);
@@ -81,12 +83,12 @@ export async function PUT(
                     ELSE published_at 
                 END,
                 updated_at = NOW()
-            WHERE id = ${params.id}
+            WHERE id = ${id}
             RETURNING *;
         `;
 
         if (result.rows.length === 0) {
-            console.error('Post not found:', params.id);
+            console.error('Post not found:', id);
             return NextResponse.json(
                 { error: 'Post not found' },
                 { status: 404 }
