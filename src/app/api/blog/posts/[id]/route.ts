@@ -18,12 +18,12 @@ const blogPostSchema = z.object({
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: { id: string } }
 ) {
     try {
         const result = await sql`
             SELECT * FROM blog_posts 
-            WHERE id = ${params.id};
+            WHERE id = ${context.params.id};
         `;
 
         if (result.rows.length === 0) {
@@ -45,11 +45,11 @@ export async function GET(
 
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: { id: string } }
 ) {
     try {
         const body = await request.json();
-        console.log('Received update request for post:', params.id);
+        console.log('Received update request for post:', context.params.id);
         console.log('Request body:', body);
 
         const validatedData = blogPostSchema.parse(body);
@@ -83,12 +83,12 @@ export async function PUT(
                     ELSE published_at 
                 END,
                 updated_at = NOW()
-            WHERE id = ${params.id}
+            WHERE id = ${context.params.id}
             RETURNING *;
         `;
 
         if (result.rows.length === 0) {
-            console.error('Post not found:', params.id);
+            console.error('Post not found:', context.params.id);
             return NextResponse.json(
                 { error: 'Post not found' },
                 { status: 404 }
