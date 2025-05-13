@@ -2,6 +2,8 @@ import { sql } from '@vercel/postgres';
 import { NextResponse, NextRequest } from 'next/server';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 // Schema for validating blog post data
 const blogPostSchema = z.object({
     title: z.string().min(1, 'Title is required'),
