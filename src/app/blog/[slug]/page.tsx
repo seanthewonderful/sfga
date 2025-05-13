@@ -1,25 +1,23 @@
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/app/Header';
-import { getBlogPost } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import { sql } from '@vercel/postgres';
 import MarkdownContent from '@/app/components/MarkdownContent';
 import { BlogPost } from '@/lib/blog';
 
-type BlogPostPageProps = {
-    params: {
-        slug: string;
-    };
-};
-
-// ✅ Use inline typing here — do not reuse BlogPostPageProps
+// ✅ Inline typing here – no shared types
 export async function generateMetadata(
-    { params }: { params: { slug: string } },
-    _parent: ResolvingMetadata
+    { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-    const post = await getBlogPost(params.slug);
+    const result = await sql<BlogPost>`
+    SELECT * FROM blog_posts 
+    WHERE slug = ${params.slug}
+    AND status = 'published';
+  `;
+
+    const post = result.rows[0];
 
     if (!post) {
         return {
@@ -35,23 +33,18 @@ export async function generateMetadata(
     };
 }
 
-async function getPost(slug: string) {
+export default async function Page({
+    params,
+}: {
+    params: { slug: string };
+}) {
     const result = await sql<BlogPost>`
     SELECT * FROM blog_posts 
-    WHERE slug = ${slug}
+    WHERE slug = ${params.slug}
     AND status = 'published';
   `;
 
-    if (result.rows.length === 0) {
-        return null;
-    }
-
-    return result.rows[0];
-}
-
-// ✅ This can still reuse BlogPostPageProps — that's fine here
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const post = await getPost(params.slug);
+    const post = result.rows[0];
 
     if (!post) {
         notFound();
