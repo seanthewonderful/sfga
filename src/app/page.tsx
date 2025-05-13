@@ -180,7 +180,7 @@ export default function HomeClient() {
               <h3 className="text-xl font-semibold">One-Hour Lesson</h3>
               <Image src="/images/lesson.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">On the range, in the bunker, on the green, or wherever you need.</p>
-              <p className="mt-4 font-bold">$70</p>
+              <p className="mt-4 font-bold">$60</p>
             </div>
           </div>
           <div className="flex flex-col justify-between p-6 bg-white rounded-lg border border-amber-500 shadow-md shadow-amber-500">
@@ -188,7 +188,7 @@ export default function HomeClient() {
               <h3 className="text-xl font-semibold mb-4">Caddie Fagan</h3>
               <Image src="/images/caddie-fagan.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">In this unique experience, you'll play golf the way it was meant to be played! Walk your favorite course with Caddie Fagan carrying your clubs. <br />Feel the course beneath your feet, learn how to read its contours, understand golf's etiquette, and learn to strategize and plan every shot.</p>
-              <p className="mt-4 font-bold">9-holes: $140<br />18-holes: $240</p>
+              <p className="mt-4 font-bold">9-holes: $120<br />18-holes: $220</p>
             </div>
           </div>
         </div>
