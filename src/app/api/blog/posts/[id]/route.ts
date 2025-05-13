@@ -2,8 +2,6 @@ import { sql } from '@vercel/postgres';
 import { NextResponse, NextRequest } from 'next/server';
 import { z } from 'zod';
 
-export const dynamic = 'force-dynamic';
-
 // Schema for validating blog post data
 const blogPostSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -16,14 +14,22 @@ const blogPostSchema = z.object({
     status: z.enum(['draft', 'published']).default('draft'),
 });
 
-export async function GET(
-    request: NextRequest,
-    context: { params: { id: string } }
-) {
+// Helper to extract dynamic ID from the URL
+function getIdFromUrl(request: NextRequest): string | null {
+    const segments = request.nextUrl.pathname.split('/');
+    return segments[segments.length - 1] || null;
+}
+
+export async function GET(request: NextRequest) {
     try {
+        const id = getIdFromUrl(request);
+        if (!id) {
+            return NextResponse.json({ error: 'Invalid post ID' }, { status: 400 });
+        }
+
         const result = await sql`
             SELECT * FROM blog_posts 
-            WHERE id = ${context.params.id};
+            WHERE id = ${id};
         `;
 
         if (result.rows.length === 0) {
@@ -43,13 +49,14 @@ export async function GET(
     }
 }
 
-export async function PUT(
-    request: NextRequest,
-    context: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest) {
     try {
         const body = await request.json();
-        console.log('Received update request for post:', context.params.id);
+        const id = getIdFromUrl(request);
+        if (!id) {
+            return NextResponse.json({ error: 'Invalid post ID' }, { status: 400 });
+        }
+        console.log('Received update request for post:', id);
         console.log('Request body:', body);
 
         const validatedData = blogPostSchema.parse(body);
@@ -83,12 +90,12 @@ export async function PUT(
                     ELSE published_at 
                 END,
                 updated_at = NOW()
-            WHERE id = ${context.params.id}
+            WHERE id = ${id}
             RETURNING *;
         `;
 
         if (result.rows.length === 0) {
-            console.error('Post not found:', context.params.id);
+            console.error('Post not found:', id);
             return NextResponse.json(
                 { error: 'Post not found' },
                 { status: 404 }
