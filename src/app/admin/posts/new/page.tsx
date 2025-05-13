@@ -64,7 +64,8 @@ Mastering your golf swing takes time and practice. Focus on these fundamentals a
 - Check out our video library for more tips`,
     meta_description: 'Learn the essential techniques and drills to improve your golf swing and lower your scores. Expert tips from Sean Fagan Golf Academy.',
     meta_keywords: 'golf swing, golf technique, golf instruction, golf tips, golf drills, golf fundamentals',
-    featured_image: '/images/blog/golf-swing.jpg'
+    featured_image: '/images/blog/golf-swing.jpg',
+    status: 'draft'
 };
 
 export default function NewPostPage() {
