@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/app/Header';
@@ -14,8 +14,11 @@ type BlogPostPageProps = {
     };
 };
 
-
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+// ✅ Use inline typing here — do not reuse BlogPostPageProps
+export async function generateMetadata(
+    { params }: { params: { slug: string } },
+    _parent: ResolvingMetadata
+): Promise<Metadata> {
     const post = await getBlogPost(params.slug);
 
     if (!post) {
@@ -34,10 +37,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 async function getPost(slug: string) {
     const result = await sql<BlogPost>`
-        SELECT * FROM blog_posts 
-        WHERE slug = ${slug}
-        AND status = 'published';
-    `;
+    SELECT * FROM blog_posts 
+    WHERE slug = ${slug}
+    AND status = 'published';
+  `;
 
     if (result.rows.length === 0) {
         return null;
@@ -46,6 +49,7 @@ async function getPost(slug: string) {
     return result.rows[0];
 }
 
+// ✅ This can still reuse BlogPostPageProps — that's fine here
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const post = await getPost(params.slug);
 
@@ -92,4 +96,4 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </article>
         </main>
     );
-} 
+}
