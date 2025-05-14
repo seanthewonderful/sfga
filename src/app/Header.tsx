@@ -67,7 +67,7 @@ export default function Header() {
                     <a onClick={() => router.push('/#lessons')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Lessons</a>
                     <a onClick={() => router.push('/blog')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Blog</a>
                     <a onClick={() => router.push('/#contact')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
-                    <a onClick={() => router.push('/#book')} className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book a Lesson</a>
+                    <a onClick={() => router.push('/#contact')} className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book a Lesson</a>
                 </div>
             </div>
         </div>

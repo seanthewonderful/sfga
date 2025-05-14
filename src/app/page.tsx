@@ -338,7 +338,18 @@ export default function HomeClient() {
           </div>
 
           <div className="flex-1 flex flex-col justify-between">
-            <form onSubmit={handleSubmit} className="flex-1 space-y-4 text-green-100">
+
+            <div className="flex gap-4 my-4 mx-4 md:my-0 md:mx-0 text-green-100 order-1 md:order-2">
+              <span>
+                <FaRegHandPointLeft size={24} className="rotate-90 md:rotate-0" />
+              </span>
+              <span>
+                <p className="text-sm">Be advised - This calendar is not the final say in booking a lesson. We will reach out within 24 hours to confirm your lesson at your chosen time, but may have to reschedule.</p>
+                <p className="text-sm">If you don't hear from us within 24 hours, please reach out to us at lessons@seanfagangolf.com.</p>
+              </span>
+            </div>
+
+            <form onSubmit={handleSubmit} className="flex-1 space-y-4 text-green-100 order-2 md:order-1">
               <label className="block text-green-100 text-center mb-2">Reach out to Sean:</label>
               {submitStatus === "success" ? (
                 <p className="text-green-600 text-center">Message sent successfully! We'll get back to you as soon as possible.</p>
@@ -392,15 +403,6 @@ export default function HomeClient() {
                 <p className="text-red-600">Failed to send message. Please try again.</p>
               )}
             </form>
-            <div className="flex gap-4 mb-24 text-green-100">
-              <span>
-                <FaRegHandPointLeft size={24} />
-              </span>
-              <span>
-                <p className="text-sm">Be advised - This calendar is not the final say in booking a lesson. We will reach out within 24 hours to confirm your lesson at your chosen time, but may have to reschedule.</p>
-                <p className="text-sm">If you don't hear from us within 24 hours, please reach out to us at lessons@seanfagangolf.com.</p>
-              </span>
-            </div>
           </div>
         </div>
         <p className="mt-8 text-center text-md text-green-100">
