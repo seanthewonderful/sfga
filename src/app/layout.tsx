@@ -26,12 +26,12 @@ export const metadata = {
   authors: [{ name: 'Sean Fagan' }],
   openGraph: {
     title: 'Sean Fagan Golf Academy',
-    description: 'Experience golf lessons with Irish charm and professional guidance.',
-    url: 'https://www.fagangolfacademy.com',
+    description: 'Experience golf lessons with Irish charm and quality guidance.',
+    url: 'https://www.seanfagangolfacademy.com',
     siteName: 'Sean Fagan Golf Academy',
     images: [
       {
-        url: 'https://yourdomain.com/og-image.jpg', // Replace with real image path
+        url: 'https://www.seanfagangolfacademy.com/images/sfga-logo-transparent.png', // Replace with real image path
         width: 1200,
         height: 630,
         alt: 'Sean Fagan Golf Academy',
@@ -44,25 +44,25 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Sean Fagan Golf Academy',
     description: 'Experience golf lessons with Irish charm and professional guidance.',
-    images: ['https://yourdomain.com/og-image.jpg'], // Same here
+    images: ['https://www.seanfagangolfacademy.com/images/sfga-logo-transparent.png'], // Same here
   },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/sfga_logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/sfga_logo.png', sizes: '16x16', type: 'image/png' },
-      { url: '/images/sfga_logo.png', sizes: '48x48', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '48x48', type: 'image/png' },
     ],
-    shortcut: '/images/sfga_logo.png',
+    shortcut: '/images/sfga-logo-transparent.png',
     apple: [
-      { url: '/images/sfga_logo.png', sizes: '180x180', type: 'image/png' },
-      { url: '/images/sfga_logo.png', sizes: '152x152', type: 'image/png' },
-      { url: '/images/sfga_logo.png', sizes: '167x167', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '180x180', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '152x152', type: 'image/png' },
+      { url: '/images/sfga-logo-transparent.png', sizes: '167x167', type: 'image/png' },
     ],
     other: [
       {
         rel: 'mask-icon',
-        url: '/images/sfga_logo.png',
+        url: '/images/sfga-logo-transparent.png',
         color: '#000000',
       },
     ],
