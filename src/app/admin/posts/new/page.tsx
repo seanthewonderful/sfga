@@ -6,6 +6,7 @@ import BlogPostForm from '../components/BlogPostForm';
 import { CreateBlogPostData } from '@/lib/blog';
 
 const TEMPLATE_POST: CreateBlogPostData = {
+    author: 'Sean Fagan',
     title: 'How to Master Your Golf Swing: A Step-by-Step Guide',
     slug: 'how-to-master-golf-swing',
     excerpt: 'Learn the essential techniques and drills to improve your golf swing and lower your scores.',
