@@ -23,6 +23,7 @@ export interface CreateBlogPostData {
     meta_description?: string;
     meta_keywords?: string;
     status: 'draft' | 'published';
+    author: string;
 }
 
 export async function createBlogPost(data: CreateBlogPostData): Promise<BlogPost> {

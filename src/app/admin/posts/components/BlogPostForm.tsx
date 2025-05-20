@@ -21,7 +21,8 @@ export default function BlogPostForm({ post, onSubmit, isSubmitting }: BlogPostF
         featured_image: post?.featured_image || '',
         meta_description: post?.meta_description || '',
         meta_keywords: post?.meta_keywords || '',
-        status: post?.status || 'draft'
+        status: post?.status || 'draft',
+        author: post?.author || 'Sean Fagan'
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -147,6 +148,21 @@ export default function BlogPostForm({ post, onSubmit, isSubmitting }: BlogPostF
                     value={formData.meta_description}
                     onChange={handleInputChange}
                     rows={2}
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-green-500 focus:outline-none focus:ring-green-500"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="author" className="block text-sm font-medium text-gray-600">
+                    Author
+                </label>
+                <input
+                    type="text"
+                    id="author"
+                    name="author"
+                    value={formData.author}
+                    onChange={handleInputChange}
+                    required
                     className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-green-500 focus:outline-none focus:ring-green-500"
                 />
             </div>

@@ -172,7 +172,7 @@ export default function HomeClient() {
               <h3 className="text-xl font-semibold">30-minute Swing Tune-Up</h3>
               <Image src="/images/swing.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">Focus on what's most important.</p>
-              <p className="mt-4 font-bold">$40</p>
+              <p className="mt-4 font-bold text-center">$40<br />*Junior: $30</p>
             </div>
           </div>
           <div className="flex flex-col justify-between p-6 bg-white rounded-lg border border-amber-500 shadow-md shadow-amber-500">
@@ -180,7 +180,7 @@ export default function HomeClient() {
               <h3 className="text-xl font-semibold">One-Hour Lesson</h3>
               <Image src="/images/lesson.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">On the range, in the bunker, on the green, or wherever you need.</p>
-              <p className="mt-4 font-bold">$60</p>
+              <p className="mt-4 font-bold text-center">$60<br />*Junior: $45</p>
             </div>
           </div>
           <div className="flex flex-col justify-between p-6 bg-white rounded-lg border border-amber-500 shadow-md shadow-amber-500">
@@ -188,9 +188,12 @@ export default function HomeClient() {
               <h3 className="text-xl font-semibold mb-4">Caddie Fagan</h3>
               <Image src="/images/caddie-fagan.png" alt="Sean Fagan Golf Academy" width={80} height={80} />
               <p className="mt-4">In this unique experience, you'll play golf the way it was meant to be played! Walk your favorite course with Caddie Fagan carrying your clubs. <br />Feel the course beneath your feet, learn how to read its contours, understand golf's etiquette, and learn to strategize and plan every shot.</p>
-              <p className="mt-4 font-bold">9-holes: $120<br />18-holes: $220</p>
+              <p className="mt-4 font-bold text-center">9-holes: $120 <small>*Junior: $100</small><br />18-holes: $220 <small>*Junior: $180</small></p>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center mt-2">
+          <p className="text-center text-sm text-green-900">*Junior pricing is available for players 17 years old and under.</p>
         </div>
 
         <div className="flex flex-col justify-center mt-8">
