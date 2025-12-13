@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair',
   subsets: ["latin"],
+  display: 'swap',
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cormorant-garamond',
+  subsets: ['latin'],
   display: 'swap',
 });
 
@@ -76,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable}`}>
       <head>
         <link rel="icon" href="/images/sfga_logo.png" type="image/png" />
       </head>

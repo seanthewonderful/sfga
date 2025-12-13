@@ -9,40 +9,36 @@ export default function Header() {
 
     return (
         <div className="relative">
-            <header className="flex items-center justify-between p-6 border-b bg-gh-green">
+            <header className="flex items-center justify-between p-6 px-12 bg-gh-green">
                 {/* Left - Logo and Title */}
                 <div className="flex items-center space-x-4 cursor-pointer" onClick={() => router.push('/thegolfhouse')}>
-                    <div className="flex-shrink-0 -my-4 relative">
+                    <div className="shrink-0 -my-4 relative">
                         <Image
-                            src="/images/gh_icon_inverse.png"
+                            src="/images/gh_icon_transparent_tan.png"
                             alt="The Golf House Logo"
                             width={100}
                             height={100}
-                            className={`h-28 w-auto hover:scale-105 transition-transform duration-300 rounded-full border-1`}
+                            className={`h-28 w-auto hover:scale-105 transition-transform duration-300  `}
                             style={{ borderColor: 'rgb(20, 83, 45)' }}
                         />
 
-                        <div
+                        {/* <div
                             className="absolute inset-0 pointer-events-none rounded-full"
                             style={{
                                 background: 'radial-gradient(circle, transparent 40%, rgba(20, 83, 45, 0.1) 50%, rgba(20, 83, 45, 0.2) 60%, rgba(20, 83, 45, 0.35) 70%, rgba(20, 83, 45, 0.5) 78%, rgba(20, 83, 45, 0.65) 85%, rgba(20, 83, 45, 0.8) 91%, rgba(20, 83, 45, 0.92) 96%, rgb(20, 83, 45) 100%)',
                             }}
-                        />
+                        /> */}
                     </div>
 
                 </div>
 
-                <div className="flex flex-col">
-                    <h1 className="text-3xl font-bold font-title text-white hover:text-yellow-400 transition-colors">The Golf House</h1>
-                    <h3 className="text-xl font-title text-white">Your Mobile Golf Simulator</h3>
-                </div>
-
                 {/* Right - Navigation */}
-                <nav className="hidden md:flex space-x-6 items-center">
-                    <a onClick={() => router.push('/#about')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">About</a>
-                    <a onClick={() => router.push('/#packages')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Packages</a>
-                    <a onClick={() => router.push('/#contact')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
-                    <a onClick={() => router.push('/#contact')} className="bg-white text-green-800 py-2 px-4 rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Reserve</a>
+                <nav className="hidden md:flex space-x-12 items-center">
+                    <a onClick={() => router.push('/thegolfhouse')} className="text-white hover:text-yellow-400 hover:scale-105 transition-all cursor-pointer">HOME</a>
+                    <a onClick={() => router.push('/#about')} className="text-white hover:text-yellow-400 hover:scale-105 transition-all cursor-pointer">ABOUT</a>
+                    <a onClick={() => router.push('/#packages')} className="text-white hover:text-yellow-400 hover:scale-105 transition-all cursor-pointer">PACKAGES</a>
+                    <a onClick={() => router.push('/#events')} className="text-white hover:text-yellow-400 hover:scale-105 transition-all cursor-pointer">EVENTS</a>
+                    <a onClick={() => router.push('/#bookings')} className="bg-white text-green-800 font-bold py-2 px-4 rounded-lg hover:bg-yellow-400 hover:scale-105 transition-all cursor-pointer">BOOK NOW</a>
                 </nav>
 
                 {/* Mobile Menu Button */}
