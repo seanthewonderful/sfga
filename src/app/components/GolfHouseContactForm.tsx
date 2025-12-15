@@ -36,12 +36,20 @@ export default function GolfHouseContactForm() {
                 body: JSON.stringify(formData),
             });
 
+            const responseData = await response.json();
+            console.log('API Response:', responseData);
+
             if (!response.ok) {
-                throw new Error('Failed to send message');
+                console.error('API Error:', responseData);
+                throw new Error(responseData.message || responseData.error || 'Failed to send message');
             }
 
-            console.log(response.body);
+            if (responseData.error) {
+                console.error('Response contains error:', responseData.error);
+                throw new Error(responseData.message || responseData.error || 'Failed to send email');
+            }
 
+            console.log('Email sent successfully:', responseData);
             setSubmitStatus('success');
             setFormData({
                 name: '',
@@ -53,7 +61,7 @@ export default function GolfHouseContactForm() {
             });
         } catch (error) {
             setSubmitStatus('error');
-            console.error(error);
+            console.error('Form submission error:', error);
         } finally {
             setIsSubmitting(false);
         }

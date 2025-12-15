@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FaTruck, FaGolfBall, FaBoxOpen, FaHome, FaClock, FaCalendarAlt, FaBuilding, FaHeart, FaBirthdayCake, FaUsers, FaBriefcase, FaTree, FaGlassCheers } from 'react-icons/fa';
 import GolfExperienceCarousel from '@/app/components/GolfExperienceCarousel';
 import GolfHouseContactForm from '@/app/components/GolfHouseContactForm';
+import GolfHouseContactInfo from '@/app/components/GolfHouseContactInfo';
 import { GiGolfFlag, GiBallPyramid, GiGolfTee, GiTrophy } from "react-icons/gi";
 
 export const metadata: Metadata = {
@@ -353,29 +354,17 @@ export default function TheGolfHouse() {
                             <p className="text-gh-tan text-lg md:text-xl mb-6">
                                 Ready to bring The Golf House to your event? Get in touch to check availability, pricing, and reserve your date.
                             </p>
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gh-tan text-lg">
-                                <a
-                                    href="mailto:thegolfhouse@seanfagangolf.com"
-                                    className="hover:text-gh-tan/80 transition-colors underline"
-                                >
-                                    thegolfhouse@seanfagangolf.com
-                                </a>
-                                <span className="hidden sm:inline">|</span>
-                                <a
-                                    href="tel:+19492924665"
-                                    className="hover:text-gh-tan/80 transition-colors underline"
-                                >
-                                    (949) 292-4665
-                                </a>
-                            </div>
                         </div>
 
                         {/* Contact Form */}
                         <div className="bg-gh-tan rounded-lg p-8 md:p-12">
-                            <h3 className="text-3xl md:text-4xl font-bold text-gh-green mb-6 font-cormorant-garamond text-center">
-                                Send Us a Message
+                            <h3 className="text-3xl md:text-4xl font-bold text-gh-green mb-12 font-cormorant-garamond text-center">
+                                Contact The Golf House
                             </h3>
-                            <GolfHouseContactForm />
+
+                            <GolfHouseContactInfo />
+
+                            {/* <GolfHouseContactForm /> */}
                         </div>
                     </div>
                 </div>
