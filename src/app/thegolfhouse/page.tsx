@@ -2,9 +2,10 @@ import HeaderGolfHouse from '@/app/HeaderGolfHouse';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaTruck, FaGolfBall, FaBoxOpen, FaFlag } from 'react-icons/fa';
-import { GiEagleHead } from 'react-icons/gi';
+import { FaTruck, FaGolfBall, FaBoxOpen, FaHome, FaClock, FaCalendarAlt, FaBuilding, FaHeart, FaBirthdayCake, FaUsers, FaBriefcase, FaTree, FaGlassCheers } from 'react-icons/fa';
 import GolfExperienceCarousel from '@/app/components/GolfExperienceCarousel';
+import GolfHouseContactForm from '@/app/components/GolfHouseContactForm';
+import { GiGolfFlag, GiBallPyramid, GiGolfTee, GiTrophy } from "react-icons/gi";
 
 export const metadata: Metadata = {
     title: 'The Golf House',
@@ -170,30 +171,68 @@ export default function TheGolfHouse() {
 
                         {/* Packages Content */}
                         <div className="bg-gh-tan rounded-lg p-8 md:p-12">
-                            <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-                                {/* The Par Package */}
-                                <div className="flex-1 flex flex-col items-center text-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                                {/* Standard Rental */}
+                                <div className="flex flex-col items-center text-center">
                                     <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                                        <FaFlag size={48} className="text-gh-green" />
+                                        <GiGolfTee size={48} className="text-gh-green" />
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                        The Par Package
+                                        Essential Event Package (2-4 Hours)
                                     </h3>
-                                    <p className="text-gh-green text-lg">
-                                        Perfect for groups of any size, with games and activities to please the entire party.
+                                    <p className="text-gh-green text-lg mb-2">
+                                        Perfect for backyard gatherings, birthday parties, small corporate events, or indoor/outdoor celebrations. Every rental includes full setup, tournament-grade radar, premium turf, clubs for all ages and skill levels, seating, décor accents, and complete teardown.
+                                    </p>
+                                    <p className="text-gh-green text-base italic">
+                                        Starting at 2 hours. Contact us for a personalized quote.
                                     </p>
                                 </div>
 
-                                {/* The Birdie Package */}
-                                <div className="flex-1 flex flex-col items-center text-center">
+                                {/* Half-Day Rental */}
+                                <div className="flex flex-col items-center text-center">
                                     <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                                        <GiEagleHead size={48} className="text-gh-green" />
+                                        <GiGolfFlag size={48} className="text-gh-green" />
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                        The Birdie Package
+                                        Extended Play Package (4–6 Hours)
                                     </h3>
-                                    <p className="text-gh-green text-lg">
-                                        Elevate your experience with our most popular enhanced and extended offering.
+                                    <p className="text-gh-green text-lg mb-2">
+                                        A great fit for weddings, receptions, block parties, or corporate retreats. The simulator stays active for the majority of your event with a dedicated attendant on site to guide guests, run contests, and keep everything running smoothly.
+                                    </p>
+                                    <p className="text-gh-green text-base italic">
+                                        Half-day availability varies. Request pricing for your date.
+                                    </p>
+                                </div>
+
+                                {/* Full-Day Experience */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <GiBallPyramid size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Golf House Full Day (8 Hours)
+                                    </h3>
+                                    <p className="text-gh-green text-lg mb-2">
+                                        Ideal for large events, festivals, conferences, business functions, or all-day celebrations. Includes complete setup, continuous play, a professional attendant, and branded décor to elevate your event from start to finish.
+                                    </p>
+                                    <p className="text-gh-green text-base italic">
+                                        Full-day rates available. Contact us for a custom quote.
+                                    </p>
+                                </div>
+
+                                {/* Multi-Day & Corporate Installations */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <GiTrophy size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Multi-Day & Corporate Installations
+                                    </h3>
+                                    <p className="text-gh-green text-lg mb-2">
+                                        Designed for trade shows, conferences, company wellness days, weekend festivals, or multi-day activations. The simulator remains on site for extended use, with optional daily staff support, contest formats, and branded screen experiences.
+                                    </p>
+                                    <p className="text-gh-green text-base italic">
+                                        Flexible multi-day packages available. Let's build the right setup for your event.
                                     </p>
                                 </div>
                             </div>
@@ -218,40 +257,82 @@ export default function TheGolfHouse() {
 
                         {/* Events Content */}
                         <div className="bg-gh-tan rounded-lg p-8 md:p-12">
-                            <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                                 {/* Weddings */}
-                                <div className="flex-1 flex flex-col">
-                                    <div className="relative w-full h-64 md:h-80 mb-6 rounded-lg overflow-hidden border-4 border-gh-green">
-                                        <Image
-                                            src="/images/gh_golfer.png"
-                                            alt="Wedding event with golf simulator"
-                                            fill
-                                            className="object-cover"
-                                        />
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaHeart size={48} className="text-gh-green" />
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
                                         Weddings
                                     </h3>
                                     <p className="text-gh-green text-lg">
-                                        Offer a fun and memorable experience for your guests.
+                                        Make your special day unforgettable with unique entertainment that keeps guests engaged and creates lasting memories between the ceremony and reception.
                                     </p>
                                 </div>
 
-                                {/* Corporate */}
-                                <div className="flex-1 flex flex-col">
-                                    <div className="relative w-full h-64 md:h-80 mb-6 rounded-lg overflow-hidden border-4 border-gh-green">
-                                        <Image
-                                            src="/images/gh_golfer.png"
-                                            alt="Corporate event with golf simulator"
-                                            fill
-                                            className="object-cover"
-                                        />
+                                {/* Birthday Celebrations */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaBirthdayCake size={48} className="text-gh-green" />
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                        Corporate
+                                        Birthday Celebrations
                                     </h3>
                                     <p className="text-gh-green text-lg">
-                                        Entertain clients or reward employees.
+                                        Whether it's a milestone birthday or a casual party, add excitement that works for all ages and skill levels, from kids' parties to adult celebrations.
+                                    </p>
+                                </div>
+
+                                {/* Backyard Gatherings */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaHome size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Backyard Gatherings
+                                    </h3>
+                                    <p className="text-gh-green text-lg">
+                                        Transform your outdoor space into an interactive entertainment hub. Perfect for casual BBQs, neighborhood get-togethers, and relaxed social events.
+                                    </p>
+                                </div>
+
+                                {/* Office & Team Events */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaBriefcase size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Office & Team Events
+                                    </h3>
+                                    <p className="text-gh-green text-lg">
+                                        Boost morale and team bonding with friendly competition. Great for company parties, team building exercises, and rewarding employees with something everyone can enjoy.
+                                    </p>
+                                </div>
+
+                                {/* Holiday Celebrations */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaTree size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Holiday Celebrations
+                                    </h3>
+                                    <p className="text-gh-green text-lg">
+                                        Add a memorable twist to Christmas parties, Memorial Day cookouts, or any seasonal gathering. Keep guests entertained while you host the perfect holiday event.
+                                    </p>
+                                </div>
+
+                                {/* Bachelor/Bachelorette Parties */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaGlassCheers size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Bachelor/Bachelorette Parties
+                                    </h3>
+                                    <p className="text-gh-green text-lg">
+                                        Kick off the celebration with competitive fun that brings the whole party together. Create unforgettable moments before the big day with interactive entertainment.
                                     </p>
                                 </div>
                             </div>
@@ -264,30 +345,59 @@ export default function TheGolfHouse() {
             <section id="bookings" className="w-full py-16 bg-gh-green">
                 <div className="w-full px-6">
                     <div className="max-w-7xl mx-auto">
-                        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                            {/* Left side - Text */}
-                            <div className="flex-1">
-                                <h2 className="text-5xl md:text-6xl font-bold text-gh-tan mb-4 font-cormorant-garamond">
-                                    Easy Online Booking
-                                </h2>
-                                <p className="text-gh-tan text-lg md:text-xl">
-                                    Pick a location, date, and time to reserve your Golf House event, with an easy booking process that takes just minutes.
-                                </p>
+                        {/* Header */}
+                        <div className="text-center mb-12">
+                            <h2 className="text-5xl md:text-6xl font-bold text-gh-tan mb-4 font-cormorant-garamond">
+                                Book Your Event
+                            </h2>
+                            <p className="text-gh-tan text-lg md:text-xl mb-6">
+                                Ready to bring The Golf House to your event? Get in touch to check availability, pricing, and reserve your date.
+                            </p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gh-tan text-lg">
+                                <a
+                                    href="mailto:thegolfhouse@seanfagangolf.com"
+                                    className="hover:text-gh-tan/80 transition-colors underline"
+                                >
+                                    thegolfhouse@seanfagangolf.com
+                                </a>
+                                <span className="hidden sm:inline">|</span>
+                                <a
+                                    href="tel:+19492924665"
+                                    className="hover:text-gh-tan/80 transition-colors underline"
+                                >
+                                    (949) 292-4665
+                                </a>
                             </div>
+                        </div>
 
-                            {/* Right side - Laptop Image */}
-                            <div className="flex-1 relative w-full h-64 md:h-80">
-                                <Image
-                                    src="/images/gh_golfer.png"
-                                    alt="Online booking system"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
+                        {/* Contact Form */}
+                        <div className="bg-gh-tan rounded-lg p-8 md:p-12">
+                            <h3 className="text-3xl md:text-4xl font-bold text-gh-green mb-6 font-cormorant-garamond text-center">
+                                Send Us a Message
+                            </h3>
+                            <GolfHouseContactForm />
                         </div>
                     </div>
                 </div>
             </section>
+
+            <footer className="flex flex-col gap-4 bg-gh-green py-6 px-6 text-center text-sm text-white">
+                <div className="flex justify-center gap-4">
+                    <a href="#" className="hover:underline hover:text-yellow-400">Privacy</a> • <a href="#" className="hover:underline hover:text-yellow-400">Terms</a>
+                    © 2025 The Golf House
+                </div>
+                <div className="flex justify-center gap-4">
+                    <a
+                        href="https://www.flaticon.com/free-icons/golf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="lessons icons"
+                        className="text-xs text-white"
+                    >
+                        Golf icon by Freepik - Flaticon
+                    </a>
+                </div>
+            </footer>
 
         </main>
     );
