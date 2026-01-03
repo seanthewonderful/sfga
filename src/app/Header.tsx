@@ -14,13 +14,13 @@ export default function Header() {
             <header className="flex items-center justify-between p-6 border-b bg-green-900">
                 {/* Left - Logo and Title */}
                 <div className="flex items-center space-x-4 cursor-pointer" onClick={() => router.push('/')}>
-                    <div className="flex-shrink-0 -my-4 relative">
+                    <div className="shrink-0 -my-4 relative">
                         <Image
                             src={isTheGolfHouse ? "/images/gh_icon_inverse.png" : "/images/sfga-logo-outline.png"}
                             alt="Sean Fagan Golf Academy Logo"
                             width={100}
                             height={100}
-                            className={`h-28 w-auto hover:scale-105 transition-transform duration-300 ${isTheGolfHouse ? 'rounded-full border-1' : ''}`}
+                            className={`h-28 w-auto hover:scale-105 transition-transform duration-300 ${isTheGolfHouse ? 'rounded-full border' : ''}`}
                             style={isTheGolfHouse ? { borderColor: 'rgb(20, 83, 45)' } : undefined}
                         />
                         {isTheGolfHouse && (
@@ -48,6 +48,7 @@ export default function Header() {
                     <a onClick={() => router.push('/#lessons')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Lessons</a>
                     <a onClick={() => router.push('/blog')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Blog</a>
                     <a onClick={() => router.push('/#contact')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
+                    <a onClick={() => router.push('/thegolfhouse')} className="text-white hover:text-yellow-400 transition-colors cursor-pointer">The Golf House</a>
                     <a onClick={() => router.push('/#contact')} className="bg-white text-green-800 py-2 px-4 rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book a Lesson</a>
                 </nav>
 
