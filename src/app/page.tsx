@@ -34,6 +34,7 @@ export default function HomeClient() {
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const [selectedLessonType, setSelectedLessonType] = useState<LessonType>('One-Hour Lesson');
   const [formData, setFormData] = useState({
+    subject: 'SFGA Contact Form Submission',
     name: '',
     email: '',
     phone: '',
@@ -88,6 +89,7 @@ export default function HomeClient() {
 
       setSubmitStatus('success');
       setFormData({
+        subject: 'SFGA Contact Form Submission',
         name: '',
         email: '',
         phone: '',
