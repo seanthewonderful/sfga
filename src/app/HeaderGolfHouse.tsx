@@ -74,7 +74,7 @@ export default function Header() {
                     <a onClick={() => router.push('/thegolfhouse#about')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">About</a>
                     <a onClick={() => router.push('/thegolfhouse#packages')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Packages</a>
                     <a onClick={() => router.push('/thegolfhouse#contact')} className="block py-2 text-white hover:text-yellow-400 transition-colors cursor-pointer">Contact</a>
-                    <a onClick={() => router.push('/thegolfhouse#contact')} className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Reserve</a>
+                    <a onClick={() => router.push('/thegolfhouse#bookings')} className="block py-2 mt-2 bg-white text-green-800 text-center rounded-lg hover:bg-yellow-400 transition-colors cursor-pointer">Book Now</a>
                 </div>
             </div>
         </div>
