@@ -18,10 +18,10 @@ export default function PricingLink({ option }: PricingLinkProps) {
             >
                 {option}
             </button>
-            <PricingModal 
-                option={option} 
-                isOpen={isOpen} 
-                onClose={() => setIsOpen(false)} 
+            <PricingModal
+                option={option}
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
             />
         </>
     );

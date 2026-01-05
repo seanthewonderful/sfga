@@ -375,9 +375,23 @@ export default function TheGolfHouse() {
                 <div className="w-full px-6">
                     <div className="max-w-7xl mx-auto">
                         {/* Photos Coming Soon Box */}
-                        <div className="bg-gh-tan rounded-lg p-8 md:p-12 flex justify-center items-center">
+                        <div className="bg-gh-tan rounded-lg p-8 md:p-12 flex flex-col justify-center items-center">
+                            <p className="text-gh-green text-lg italic mb-2">
+                                Photos from the SLC Bridal Show - January 2026
+                            </p>
+                            <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full mb-6">
+                                <div className="relative w-full md:w-1/2 h-96">
+                                    <Image src="/images/golfHouse/bridalshow_2.jpeg" alt="The Golf House" fill className="object-contain" />
+                                </div>
+                                <div className="relative w-full md:w-1/2 h-96">
+                                    <Image src="/images/golfHouse/bridalshow_1.jpeg" alt="The Golf House" fill className="object-contain" />
+                                </div>
+                                <div className="relative w-full md:w-1/2 h-96">
+                                    <Image src="/images/golfHouse/bridalshow_3.jpeg" alt="The Golf House" fill className="object-contain" />
+                                </div>
+                            </div>
                             <h3 className="text-3xl md:text-4xl font-bold text-gh-green font-cormorant-garamond text-center w-full">
-                                Photos of The Golf House coming soon
+                                More photos of the complete Golf House setup coming soon!
                             </h3>
                         </div>
                     </div>
