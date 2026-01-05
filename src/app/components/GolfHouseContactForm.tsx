@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 
-export default function GolfHouseContactForm() {
+export default function GolfHouseContactForm({ subject }: { subject: string }) {
     const [formData, setFormData] = useState({
+        subject: subject,
         name: '',
         email: '',
         phone: '',
@@ -52,6 +53,7 @@ export default function GolfHouseContactForm() {
             console.log('Email sent successfully:', responseData);
             setSubmitStatus('success');
             setFormData({
+                subject: subject,
                 name: '',
                 email: '',
                 phone: '',

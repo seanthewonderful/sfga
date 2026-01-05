@@ -7,6 +7,7 @@ import GolfExperienceCarousel from '@/app/components/GolfExperienceCarousel';
 import GolfHouseContactForm from '@/app/components/GolfHouseContactForm';
 import GolfHouseContactInfo from '@/app/components/GolfHouseContactInfo';
 import { GiGolfFlag, GiBallPyramid, GiGolfTee, GiTrophy } from "react-icons/gi";
+import PricingLink from '@/app/components/PricingLink';
 
 export const metadata: Metadata = {
     title: 'The Golf House',
@@ -69,10 +70,10 @@ export default function TheGolfHouse() {
                             BOOK YOUR EVENT
                         </Link>
                         <Link
-                            href="#packages"
+                            href="#pricing"
                             className="px-8 py-3 bg-gh-green text-gh-tan font-semibold rounded border-2 border-gh-tan hover:bg-gh-tan/90 hover:text-gh-green transition-colors"
                         >
-                            SEE PACKAGES
+                            SEE PRICING
                         </Link>
                     </div>
                 </div>
@@ -156,21 +157,20 @@ export default function TheGolfHouse() {
                 </div>
             </section>
 
-            {/* Packages Section */}
-            <section id="packages" className="w-full py-16 bg-gh-green">
+            {/* Pricing Section */}
+            <section id="pricing" className="w-full py-16 bg-gh-green">
                 <div className="w-full px-6">
                     <div className="max-w-7xl mx-auto">
                         {/* Header */}
                         <div className="text-center mb-12">
                             <h2 className="text-5xl md:text-6xl font-bold text-gh-tan mb-4 font-cormorant-garamond">
-                                Packages
+                                Pricing
                             </h2>
                             <p className="text-gh-tan text-lg md:text-xl">
-                                Bundle your golf experience for maximum fun.
-                            </p>
+                                Pricing for The Golf House                            </p>
                         </div>
 
-                        {/* Packages Content */}
+                        {/* Pricing Content */}
                         <div className="bg-gh-tan rounded-lg p-8 md:p-12">
                             <div className="flex flex-col gap-8 md:gap-12">
                                 {/* Standard Rental - Centered */}
@@ -178,18 +178,23 @@ export default function TheGolfHouse() {
                                     <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
                                         <GiGolfFlag size={48} className="text-gh-green" />
                                     </div>
-                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-gh-green mb-4 font-cormorant-garamond">
                                         Hourly Rental
                                     </h3>
                                     <p className="text-gh-green text-lg mb-2">
                                         2 Hours (minimum): $500
                                     </p>
                                     <p className="text-gh-green text-lg mb-2">
-                                        Each additional hour: $150.
+                                        Each additional hour: $150
                                     </p>
                                     <p className="text-gh-green text-lg mb-2">
                                         Includes setup, cleanup, and a dedicated attendant.
                                     </p>
+
+                                    <p className="text-gh-green text-lg font-semibold mt-4">
+                                        <PricingLink option="SLC Bridal Show Incentive" />
+                                    </p>
+
                                 </div>
 
                                 {/* Full-Day and Multi-Day - Side by side on desktop, stacked on mobile */}
@@ -199,7 +204,7 @@ export default function TheGolfHouse() {
                                         <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
                                             <GiBallPyramid size={48} className="text-gh-green" />
                                         </div>
-                                        <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        <h3 className="text-2xl md:text-3xl font-bold text-gh-green mb-4 font-cormorant-garamond">
                                             Golf House Full Day (8 Hours)
                                         </h3>
                                         <p className="text-gh-green text-lg mb-2">
@@ -215,7 +220,7 @@ export default function TheGolfHouse() {
                                         <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
                                             <GiTrophy size={48} className="text-gh-green" />
                                         </div>
-                                        <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        <h3 className="text-2xl md:text-3xl font-bold text-gh-green mb-4 font-cormorant-garamond">
                                             Multi-Day & Corporate Installations
                                         </h3>
                                         <p className="text-gh-green text-lg mb-2">
@@ -228,65 +233,6 @@ export default function TheGolfHouse() {
                                 </div>
                             </div>
                         </div>
-                        {/* Additional Services Section */}
-                        <div className="mt-16 w-full flex justify-center">
-                            <div className="max-w-7xl w-full">
-                                <h2 className="text-4xl md:text-5xl font-bold text-gh-tan mb-8 text-center font-cormorant-garamond">
-                                    Enhancements
-                                </h2>
-                                <div className="bg-gh-tan rounded-lg p-8 md:p-12">
-                                    {/* First Row: Azalea Lemonade & Sparkling Azalea Lemonade */}
-                                    <div className="flex flex-col md:flex-row gap-8 md:gap-12 mb-8">
-                                        {/* Azalea Lemonade */}
-                                        <div className="flex flex-col items-center text-center flex-1 max-w-lg mx-auto p-0">
-                                            <div className="mb-6 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow">
-                                                <span className="text-4xl" role="img" aria-label="lemonade">🍋</span>
-                                            </div>
-                                            <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                                Azalea Lemonade
-                                            </h3>
-                                            <p className="text-gh-green text-lg mb-2">
-                                                A signature, non-alcoholic lemonade inspired by classic Southern hospitality. Fresh lemonade is lightly finished with grenadine and cherry, served chilled and styled to complement The Golf House experience. A thoughtful refreshment that adds warmth, charm, and a sense of occasion to weddings and private events.
-                                            </p>
-                                            <p className="text-gh-green text-lg mb-2">
-                                                Starting at $350 <br />Pricing varies based on guest count and event details
-                                            </p>
-                                        </div>
-                                        {/* Sparkling Azalea Lemonade */}
-                                        <div className="flex flex-col items-center text-center flex-1 max-w-lg mx-auto p-0">
-                                            <div className="mb-6 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow">
-                                                <span className="text-4xl" role="img" aria-label="sparkling-lemonade">✨🍋</span>
-                                            </div>
-                                            <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                                Sparkling Azalea Lemonade
-                                            </h3>
-                                            <p className="text-gh-green text-lg mb-2">
-                                                A lightly effervescent variation of our Azalea Lemonade, available upon request.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    {/* Second Row: Custom Touches (centered) */}
-                                    <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-center">
-                                        {/* Custom Touches */}
-                                        <div className="flex flex-col items-center text-center flex-1 max-w-lg mx-auto p-0">
-                                            <div className="mb-6 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow">
-                                                <span className="text-4xl" role="img" aria-label="custom">🎨</span>
-                                            </div>
-                                            <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                                Custom Touches
-                                            </h3>
-                                            <p className="text-gh-green text-lg mb-2">
-                                                Thoughtful details can be incorporated to make your event feel personal and memorable. Select options may include custom drink stirrers, personalized signage, curated décor elements, or tailored on-screen experiences within the simulator.
-                                            </p>
-                                            <p className="text-gh-green text-lg mb-2">
-                                                Custom touches are designed in collaboration and vary based on event details.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
 
 
 
@@ -323,6 +269,19 @@ export default function TheGolfHouse() {
                                     </h3>
                                     <p className="text-gh-green text-lg">
                                         Make your special day unforgettable with unique entertainment that keeps guests engaged and creates lasting memories between the ceremony and reception.
+                                    </p>
+                                </div>
+
+                                {/* Bachelor/Bachelorette Parties */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                                        <FaGlassCheers size={48} className="text-gh-green" />
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
+                                        Bachelor/Bachelorette Parties
+                                    </h3>
+                                    <p className="text-gh-green text-lg">
+                                        Kick off the celebration with competitive fun that brings the whole party together. Create unforgettable moments before the big day with interactive entertainment.
                                     </p>
                                 </div>
 
@@ -378,18 +337,6 @@ export default function TheGolfHouse() {
                                     </p>
                                 </div>
 
-                                {/* Bachelor/Bachelorette Parties */}
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="mb-6 w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                                        <FaGlassCheers size={48} className="text-gh-green" />
-                                    </div>
-                                    <h3 className="text-2xl md:text-3xl font-semibold text-gh-green mb-4 font-cormorant-garamond">
-                                        Bachelor/Bachelorette Parties
-                                    </h3>
-                                    <p className="text-gh-green text-lg">
-                                        Kick off the celebration with competitive fun that brings the whole party together. Create unforgettable moments before the big day with interactive entertainment.
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -418,7 +365,7 @@ export default function TheGolfHouse() {
 
                             <GolfHouseContactInfo />
 
-                            <GolfHouseContactForm />
+                            <GolfHouseContactForm subject="Golf House Inquiry" />
                         </div>
                     </div>
                 </div>
